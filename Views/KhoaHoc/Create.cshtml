@@ -1,0 +1,38 @@
+@model List<LoaiKhoaHoc>;
+@{
+     ViewData["Title"] = "Tạo mới khóa học";
+    var loaiKhoaHocs = Model;
+}
+<h1 class="display">Tạo mới khóa học</h1>
+<form action="/KhoaHoc/Save" method="POST"> 
+  <div class="form-group">
+    <label for="Name">Name</label>
+    <input type="text" class="form-control" id="Name" name="Name"  placeholder="Enter Name">
+  </div>
+  <div class="form-group">
+    <label for="Slug">Slug</label>
+    <input type="text" class="form-control" id="Slug" name="Slug"  placeholder="Enter Slug">
+  </div>
+  <div class="form-group">
+    <label for="TomtatKH">Tóm tắt khóa học</label>
+    <input type="text" class="form-control" id="TomtatKH" name="TomtatKH" >
+  </div>
+  <div class="form-group">
+    <label for="NdDetail">Nội dung chi tiết</label>
+    <input type="text" class="form-control" id="NdDetail" name="NdDetail" >
+  </div>
+  <div class="form-group">
+    <label for="Image">Hình ảnh</label>
+    <input type="text" class="form-control" id="Image" name="Image" >
+  </div>
+  <div class="form-group">
+        <label for="LoaiKhoaHoc">Loại khóa học</label>
+        <select class="form-control" id="LoaiKhoaHocId" name="LoaiKhoaHocId">
+            @foreach (var loaiKhoaHoc in loaiKhoaHocs)
+            {
+                <option value="@loaiKhoaHoc.Id">@loaiKhoaHoc.Name</option>
+            }
+        </select>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,56 @@
+﻿@model List<KhoaHoc>;
+@{
+    ViewData["Title"] = "Home Page";
+    var khoaHocs = Model;
+    //var cate123 = ViewBag.cate123
+}
+
+<div class="text-center">
+    <h1 class="display-4">Khóa Học</h1>
+    <div class="form-group">
+        <table>
+            <thead>
+                <form action="/KhoaHoc/Index" method="GET">
+                <th>
+                    <input type="text" class="form-control" id="search" name="search"  placeholder="Enter Khóa Học">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </th>
+                </form>
+                <form action="/KhoaHoc/Index" method="GET">
+                <th>
+                    <select name="sort"  class="form-control">
+                        <option name="sort" value="NameKH">Tên Khóa Học</option>
+                        <option name="sort" value="LoaiKH">Loại Khóa Học</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Sort</button>
+                </th>
+                </form>
+            </thead>
+        </table>
+  </div>
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th style="text-align: left;">Name</th>
+            <th>Loại khóa học</th>
+            <th>
+                <a href="/KhoaHoc/Create" class="btn btn-primary" >Create</a>
+            </th>
+        </thead>
+        <tbody>
+            @foreach (var khoaHoc in khoaHocs)
+            {
+            <tr >
+                <td>@khoaHoc.Id</td>
+                <td style="text-align: left;">@khoaHoc.Name</td>
+                <td>@khoaHoc.LoaiKhoaHoc.Name</td>
+                <td>
+                <a href="/KhoaHoc/Update?id=@khoaHoc.Id" class="btn btn-success" >Update</a>
+                <a href="/KhoaHoc/Delete?id=@khoaHoc.Id" class="btn btn-danger" >Delete</a>
+                <a href="/KhoaHoc/Detail?id=@khoaHoc.Id" class="btn btn-primary" >Detail</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
